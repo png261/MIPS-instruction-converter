@@ -10,7 +10,7 @@ export function extract_R_format(bits) {
             rs: binaryToInteger(match[2]),
             rt: binaryToInteger(match[3]),
             rd: binaryToInteger(match[4]),
-            shampt: binaryToInteger(match[5]),
+            shamt: binaryToInteger(match[5]),
             funct: binaryToInteger(match[6])
         }
     }

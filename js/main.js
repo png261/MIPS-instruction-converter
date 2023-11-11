@@ -7,6 +7,7 @@ const $submitButton = document.querySelector("button#submit");
 const $Rformat = document.querySelector("#r_format");
 const $Iformat = document.querySelector("#i_format");
 const $Jformat = document.querySelector("#j_format");
+const $signExtend = document.querySelector("#sign_extend");
 
 function renderRFormat(bits) {
     $Rformat.innerHTML = '';
@@ -44,6 +45,19 @@ function renderJFormat(bits) {
     }
 }
 
+function renderSignExtendFormat(bits) {
+    $signExtend.innerHTML = '';
+    console.log("???");
+    const signExtendFormatResult = MIPS.extract_sign_xtend_format(bits);
+    if (!signExtendFormatResult) {
+        $signExtend.innerHTML = "invalid bits"
+    } else {
+        for (const [key, value] of Object.entries(signExtendFormatResult)) {
+            $signExtend.innerHTML += value;
+        }
+    }
+}
+
 function itemHtml(key, value) {
     return `<p><b>${key}: </b> ${value}</p>`
 }
@@ -53,4 +67,5 @@ $submitButton.addEventListener('click', () => {
     renderRFormat(bits);
     renderIFormat(bits);
     renderJFormat(bits);
+    renderSignExtendFormat(bits);
 })

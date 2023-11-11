@@ -1,4 +1,4 @@
-import { normalizeBits } from './Utils.js'
+import { normalizeBits, signExtend } from './Utils.js'
 import { binaryToInteger } from './TwoComplement.js'
 
 export function extract_R_format(bits) {
@@ -36,6 +36,17 @@ export function extract_J_format(bits) {
         return {
             op: binaryToInteger(match[1]),
             address: binaryToInteger(match[2])
+        }
+    }
+}
+
+export function extract_sign_xtend_format(bits) {
+    const REGEX = /^([01]{16})$/;
+    const groupFill = /([01]{4})/g;
+    const match = REGEX.exec(normalizeBits(bits));
+    if (match) {
+        return {
+            bits: signExtend(match[1]).replace(groupFill, "$1 ")
         }
     }
 }
